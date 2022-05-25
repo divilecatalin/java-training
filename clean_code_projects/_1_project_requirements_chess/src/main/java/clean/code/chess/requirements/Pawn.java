@@ -1,5 +1,7 @@
 package clean.code.chess.requirements;
 
+import static clean.code.chess.requirements.PieceColor.BLACK;
+
 public class Pawn {
 
     private ChessBoard chessBoard;
@@ -11,7 +13,7 @@ public class Pawn {
         this.pieceColor = pieceColor;
     }
 
-    public ChessBoard getChesssBoard() {
+    public ChessBoard getChessBoard() {
         return chessBoard;
     }
 
@@ -44,7 +46,29 @@ public class Pawn {
     }
 
     public void Move(MovementType movementType, int newX, int newY) {
-        throw new UnsupportedOperationException("Need to implement Pawn.Move()") ;
+        if (chessBoard.IsLegalBoardPosition(newX,newY)) {
+            if(pieceColor==BLACK){
+                if(getXCoordinate() == newX){
+                    if((getYCoordinate()-1) == newY){
+                        setXCoordinate(newX);
+                        setYCoordinate(newY);
+                    }else if(getYCoordinate()==6 && (getYCoordinate()-2) == newY){
+                        setXCoordinate(newX);
+                        setYCoordinate(newY);
+                    }
+                }
+            }else{
+                if(getXCoordinate() == newX){
+                    if((getYCoordinate()+1) == newY){
+                        setXCoordinate(newX);
+                        setYCoordinate(newY);
+                    }
+                }else if(getYCoordinate()==1 && (getYCoordinate()+2) == newY){
+                    setXCoordinate(newX);
+                    setYCoordinate(newY);
+                }
+            }
+        }
     }
 
     @Override

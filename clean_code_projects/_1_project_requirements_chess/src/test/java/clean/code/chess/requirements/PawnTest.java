@@ -3,7 +3,7 @@ package clean.code.chess.requirements;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class PawnTest {
 
@@ -51,6 +51,22 @@ public class PawnTest {
         testSubject.Move(MovementType.MOVE, 6, 2);
         assertEquals(6, testSubject.getXCoordinate());
         assertEquals(2, testSubject.getYCoordinate());
+    }
+
+    @Test
+    public void testPawn_Move_LegalCoordinates_ForwardWith2_UpdatesCoordinates() {
+        chessBoard.Add(testSubject, 6, 6, PieceColor.BLACK);
+        testSubject.Move(MovementType.MOVE, 6, 4);
+        assertEquals(6, testSubject.getXCoordinate());
+        assertEquals(4, testSubject.getYCoordinate());
+    }
+
+    @Test
+    public void testPawn_Move_IlegalCoordinates_ForwardWith2_DoesNotMove() {
+        chessBoard.Add(testSubject, 6, 6, PieceColor.BLACK);
+        testSubject.Move(MovementType.MOVE, 4, 4);
+        assertEquals(6, testSubject.getXCoordinate());
+        assertEquals(6, testSubject.getYCoordinate());
     }
 
 }
